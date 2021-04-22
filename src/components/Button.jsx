@@ -73,7 +73,7 @@ const Button = ({
           } else {
             if (
               (displayValue === "0") |
-              (parseInt(displayValue) === 0) |
+              (parseInt(displayValue) === 0 & displayValue !== '0.') |
               isNaN(displayValue)
             ) {
               if (
