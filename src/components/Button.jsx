@@ -56,8 +56,13 @@ const Button = ({value, method, color, className, displayValue, btnType, pending
                 if (String(displayValue).includes('.') & value === '.'){
                     methodToUse = () => null;
                 } else {
-                    if (displayValue === '0' | isNaN(displayValue)){
-                        methodToUse = () => method(value);
+                    if (displayValue === '0'  | isNaN(displayValue)){
+                        if(displayValue === '0' & value === '.'){
+                            methodToUse = () => method(displayValue + value);
+                        }else{
+                            methodToUse = () => method(value);
+                        }
+                        
                     } else {
                         methodToUse = () => method(displayValue + value);
                     }
@@ -86,6 +91,7 @@ const Button = ({value, method, color, className, displayValue, btnType, pending
             } else if (memory !== null) {
                 methodToUse = () => {
                     calculate();
+                    setMemory(null);
                     setPendingChange(true);
                     setSelectedOperand(value);
                 }
