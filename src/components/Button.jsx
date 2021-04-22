@@ -16,7 +16,11 @@ const Button = ({value, method, color, className, displayValue, btnType, pending
                 setDisplayValue(parseFloat(memory) * parseFloat(displayValue));
                 break;
             case '/':
-                setDisplayValue(parseFloat(memory) / parseFloat(displayValue));
+                if (parseFloat(memory) / parseFloat(displayValue) === Infinity){
+                    setDisplayValue(NaN);
+                } else {
+                    setDisplayValue(parseFloat(memory) / parseFloat(displayValue));
+                }
                 break;
             default: break;
         }
@@ -49,7 +53,17 @@ const Button = ({value, method, color, className, displayValue, btnType, pending
                     method(value);
                 } 
             } else {
-                methodToUse = () => method(displayValue + value);
+                if (String(displayValue).includes('.') & value === '.'){
+                    methodToUse = () => null;
+                } else {
+                    if (displayValue === '0' | isNaN(displayValue)){
+                        methodToUse = () => method(value);
+                    } else {
+                        methodToUse = () => method(displayValue + value);
+                    }
+                    
+                }
+                
             }
                     
             break;
