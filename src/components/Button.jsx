@@ -60,7 +60,7 @@ const Button = ({
       }
       break;
     case "number-btn":
-      if (String(displayValue).length < 15) {
+      if (String(displayValue).length < 15 | pendingChange) {
         if (pendingChange) {
           methodToUse = () => {
             setPendingChange(false);
@@ -73,16 +73,20 @@ const Button = ({
           } else {
             if (
               (displayValue === "0") |
-              (parseInt(displayValue) === 0 & displayValue !== '0.') |
+              (parseFloat(displayValue) === 0 & displayValue !== '0.') |
               isNaN(displayValue)
             ) {
               if (
-                ((displayValue === "0") | (parseInt(displayValue) === 0)) &
+                ((displayValue === "0") | (parseFloat(displayValue) === 0)) &
                 (value === ".")
               ) {
                 methodToUse = () => method(displayValue + value);
               } else {
-                methodToUse = () => method(value);
+                if (value === "00"){
+                  methodToUse = () => method(0);
+                } else {
+                  methodToUse = () => method(value);
+                }
               }
             } else {
               methodToUse = () => method(displayValue + value);
@@ -104,7 +108,7 @@ const Button = ({
             setSelectedOperand("");
           }
         };
-      } else if (memory !== null) {
+      } else if (memory !== null & !isNaN(memory)) {
         methodToUse = () => {
           calculate();
           setMemory(null);
