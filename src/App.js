@@ -4,7 +4,7 @@ import Button from "./components/Button";
 import { useState } from "react";
 
 function App() {
-  const memories = ["C", "AC", "<"];
+  const memories = ["C", "AC", "←"];
   const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ","];
   const operands = ["+", "-", "*", "/", "="];
 

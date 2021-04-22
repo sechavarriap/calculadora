@@ -27,7 +27,7 @@ const Button = ({value, method, color, className, displayValue, btnType, pending
     switch (btnType) {
         case 'memory-btn':
             switch (value) {
-                case '<':
+                case '←':
                     methodToUse = () => removeChar();
                     break;
                 case 'C':
