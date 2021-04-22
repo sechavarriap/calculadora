@@ -7,16 +7,16 @@ const Button = ({value, method, color, className, displayValue, btnType, pending
         
         switch(selectedOperand){
             case '+': 
-                setDisplayValue(parseInt(memory) + parseInt(displayValue));
+                setDisplayValue(parseFloat(memory) + parseFloat(displayValue));
                 break;
             case '-':
-                setDisplayValue(parseInt(memory) - parseInt(displayValue));
+                setDisplayValue(parseFloat(memory) - parseFloat(displayValue));
                 break;
             case '*':
-                setDisplayValue(parseInt(memory) * parseInt(displayValue));
+                setDisplayValue(parseFloat(memory) * parseFloat(displayValue));
                 break;
             case '/':
-                setDisplayValue(parseInt(memory) / parseInt(displayValue));
+                setDisplayValue(parseFloat(memory) / parseFloat(displayValue));
                 break;
             default: break;
         }
@@ -27,7 +27,7 @@ const Button = ({value, method, color, className, displayValue, btnType, pending
     switch (btnType) {
         case 'memory-btn':
             switch (value) {
-                case '<':
+                case '←':
                     methodToUse = () => removeChar();
                     break;
                 case 'C':
@@ -49,7 +49,7 @@ const Button = ({value, method, color, className, displayValue, btnType, pending
                     method(value);
                 } 
             } else {
-                methodToUse = () => method(displayValue.concat(value));
+                methodToUse = () => method(displayValue + value);
             }
                     
             break;
