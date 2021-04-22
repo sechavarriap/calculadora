@@ -5,10 +5,10 @@ import { useState } from "react";
 
 function App() {
   const memories = ["C", "AC", "←"];
-  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ","];
+  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
   const operands = ["+", "-", "*", "/", "="];
 
-  const [displayValue, setDisplayValue] = useState("");
+  const [displayValue, setDisplayValue] = useState("0");
   const [selectedOperand, setSelectedOperand] = useState("");
   const [pendingChange, setPendingChange] = useState(false);
   const [memory, setMemory] = useState(null);
